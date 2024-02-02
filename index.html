@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMDB MOVIE APP I</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .ouput{
+        width: 367px;
+        height: 50px;
+        border: 2px solid black;
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+      }
+      .btn-box button{
+        width: 120px;
+        padding: 5px 0;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ouput">0</div>
+    <div class="btn-box">
+        <button value="Start">Start</button>
+        <button>Incremen</button>
+        <button>Decrement</button>
+    </div>
+  </body>
+  <script>
+        let buttns = document.querySelectorAll("button")
+        let btnChanger ;
+        let number = 0
+        buttns[0].addEventListener("click",(start))
+        function start(){
+            if(!btnChanger){
+                btnChanger = setInterval(()=>{
+                    document.querySelector(".ouput").innerHTML = number
+                    return number++ 
+                },1000)
+            }
+            buttns[0].removeEventListener("click",start)
+            buttns[0].addEventListener("click",stop)
+            buttns[0].innerHTML = "Stop"
+        }
+        function stop(){
+            clearInterval(btnChanger)
+            btnChanger = null
+            buttns[0].removeEventListener("click",stop)
+            buttns[0].addEventListener("click",start)
+            buttns[0].innerHTML = "Start"
+        }
+
+
+        buttns[1].addEventListener("click",()=>{
+            document.querySelector(".ouput").innerHTML = number
+            return number++
+        })
+
+        buttns[2].addEventListener("click",()=>{
+            document.querySelector(".ouput").innerHTML = number
+            return number--
+        })
+        
+  </script>
+</html>
